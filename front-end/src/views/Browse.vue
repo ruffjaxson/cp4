@@ -1,13 +1,14 @@
 <template>
 <div>
   <div class='main-container'>
-    <h1>Find your character</h1>
+    <h1>FIND YOUR CHARACTER</h1>
     <div class="search">
       <form class="pure-form">
-        <i class="fas fa-search"></i><input v-model="searchText" placeholder="Narrow your search" style="width:400px;"/>
+        <i class="fa-search"></i><input v-model="searchText" placeholder="NARROW YOUR SEARCH" style="width:300px;"/>
       </form>
     </div>
   </div>
+  <hr style="width:80%;">
   <InfoList :items="items" />
 </div>
 </template>
@@ -37,7 +38,23 @@ export default {
 <style scoped>
 
 .search {
+  font-family: 'Unica One', cursive;
   margin-top: 30px;
 }
+
+input {
+  font-family: 'Unica One', cursive;
+  height: 1.5em;
+
+}
+
+.main-container {
+  padding-top: 40px;
+}
+
+hr {
+  margin-top: 50px;
+}
+
 
 </style>

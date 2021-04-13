@@ -5,9 +5,9 @@
         <h1>STAR WARS</h1>
       </div>
       <div class='menu-options'>
-        <router-link to="/">Home</router-link>
-        <router-link to="/browse">Browse</router-link>
-        <router-link to="/Testimony">Testimony</router-link>
+        <router-link to="/">HOME</router-link>
+        <router-link to="/browse">BROWSE</router-link>
+        <router-link to="/Testimony">TESTIMONY</router-link>
       </div>
     </div>
 
@@ -64,6 +64,8 @@ a {
   display: flex;
   justify-content: center;
   padding-bottom: 25px;
+  font-family: 'Dela Gothic One', cursive;
+  font-size: 0.9em;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -71,6 +73,9 @@ a {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #333333;
+  color: white;
+  font-family: 'Unica One', cursive;
 }
 
 #nav {
@@ -92,18 +97,20 @@ a {
   align-items: center;
   justify-content: center;
   background-color: #000000;
-  height: 90px;
-  color: #FFE81F;
+  height: 130px;
+  color: white;
   text-align: center;
-  margin-top: 30px;
+  font-family: 'Unica One', cursive;
+  font-size: 1.3em;
+
 }
 .footer-link:visited {
-  color: #FFE81F;
+  color: white;
 }
 
 
 .footer-link {
   text-decoration: underline;
-  color: #FFE81F;
+  color: white;
 }
 </style>

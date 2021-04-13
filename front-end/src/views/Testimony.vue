@@ -2,46 +2,35 @@
 <div>
   <div class='main-container'>
     <div id="conversations">
-    <button v-for="conversation in conversations" :key="conversation._id" @click="selectconversation(conversation)">{{conversation.name}}</button>
-  </div>
-
-  <!-- <div class="ararar" v-for="conversation in conversations" :key="conversation.id">
-    <p>Arg name: {{conversation.name}}</p>
-  </div> -->
-
-    <h2>Enter your conversation here</h2>
-    <form @submit.prevent="addComment">
-      <input v-model="name" placeholder="Name">
-      <p></p>
-      <textarea v-model="message"></textarea>
-      <br />
-      <button class='submit' type="submit">Submit</button>
-  </form>
-
-
-
-  <!-- <div class="tryingThis" v-for="conversation in conversations" :key="conversation.id">
-    <p>{{conversation.name}}</p>
-  </div> -->
-  <!-- <div class="todoComments" v-if="conversation">
-    <p>conversation Works</p>
-    <p>ppppppp{{}}</p>
-  </div> -->
-
-    <div v-for="comment in comments" v-bind:key="comment.id">
-      <div class="comment">
-        <div class="message">
-          <p>{{comment.message}}</p>
-          <p><i>-- {{comment.userName}} on {{comment.today}}</i></p>
-          <form @submit.prevent="deleteComment">
-            <button class='edit-delete' @click="deleteComment(comment)">DELETE COMMENT</button>
-          </form>
-          <form @submit.prevent="editComment">
-            <button class='edit-delete' @click="editComment(comment)">EDIT COMMENT</button>
-          </form>
+      <button class="conversation" v-for="conversation in conversations" :key="conversation._id" @click="selectconversation(conversation)">{{conversation.name}}</button>
+    </div>
+    <div class='topForm'>
+      <h2>ENTER YOUR COMMENT HERE</h2>
+      <hr class='small-hr'>
+      <form @submit.prevent="addComment">
+        <input class='nameHolder' v-model="name" placeholder="NAME">
+        <p></p>
+        <textarea class="commentInput" v-model="message" placeholder="YOUR COMMENT, IF YOU WILL"></textarea>
+        <br />
+        <button id="submit" class='conversation' type="submit">SUBMIT</button>
+      </form>
+    </div>
+    <div class='displayComments'>
+      <div v-for="comment in comments" v-bind:key="comment.id">
+        <div class="comment">
+          <div class="message">
+            <p>{{comment.message}}</p>
+            <p><i>-- {{comment.userName}} on {{comment.today}}</i></p>
+            <form @submit.prevent="deleteComment">
+              <button class='edit-delete' @click="deleteComment(comment)">DELETE COMMENT</button>
+            </form>
+            <form @submit.prevent="editComment">
+              <button class='edit-delete' @click="editComment(comment)">EDIT COMMENT</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+  </div>
   </div>
 </div>
 </template>
@@ -88,7 +77,7 @@ export default {
             await axios.post(`/api/arguments/6075c741fca33b59f015328e/comments`, {
               userName: this.name,
               message: this.message,
-              date: this.today
+              date: new Date().toLocaleString()
             });
             this.name = "";
             this.message = "";
@@ -124,8 +113,71 @@ export default {
 
 <style scoped>
 
+.main-container{
+  background-color: #333333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.small-hr {
+  width: 30%
+}
+
+.topForm {
+  width: 85%;
+  color: white;
+  font-family: 'Dela Gothic One', cursive;
+  margin-bottom: 100px;
+}
+
+.displayComments {
+  width: 80%;
+  color: white;
+  padding-bottom: 15px;
+}
+
+.commentInput {
+  font-size: 0.9em;
+  border: 4px solid white;
+  font-size: 0.8em;
+  width: 100%;
+  max-width: 500px;
+  height: 100px;
+  font-family: 'Dela Gothic One', cursive;
+  margin: 10px 0px 20px 0px;
+}
+
+.nameHolder {
+  font-family: 'Dela Gothic One', cursive;
+  font-size: 1.05em;
+  margin: 20px 0px 0px 0px;
+}
+
+.conversation {
+  font-family: 'Dela Gothic One', cursive;
+  background-color: #595959; /*lighter gray */
+  color: white;
+  margin: 10px;
+  border: 5px outset gold;
+  height: 75px;
+  width: 30%;
+  font-size: 1.25em;
+  letter-spacing: 3px;
+}
+
+#submit {
+  width: 100px;
+  height: 50px;
+  font-size: 0.8em;
+}
+
 #conversations {
-  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: 35px 0px 30px 0px;
 }
 
 .edit-delete {
@@ -150,24 +202,23 @@ input {
 
 h2 {
   font-size: 0.8em;
+  letter-spacing: 1.8px;
 }
 
 .message {
-  width: 70%;
+  width: 85%;
 }
 
 .comment {
   display: flex;
   justify-content: center;
-  margin-top: 15px;
+  margin: 8px;
+  background-color: #595959;
+  border: 3px solid black;
+  padding: 20px;
 }
 
-textarea {
-  font-size: 1.6em;
-  width: 100%;
-  max-width: 500px;
-  height: 100px;
-}
+
 
 .submit {
   margin-bottom: 20px;
@@ -175,5 +226,9 @@ textarea {
 button {
   margin-top: 20px;
   font-size: 1.2em;
+}
+
+.footer {
+  color: white !important;
 }
 </style>

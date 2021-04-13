@@ -41,6 +41,11 @@ export default {
 
 .item{
   margin: 35px;
+  padding: 15px;
+  border: 2px solid white;
+  background-color: #595959; /*lighter gray */
+  font-family: 'Unica One', cursive;
+  font-size: 1.2em;
 }
 
 p {

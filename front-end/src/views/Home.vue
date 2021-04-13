@@ -2,7 +2,8 @@
 <div>
   <div class='main-container'>
   </div>
-  <div class='home-title'> <h1>Roster</h1></div>
+  <div class='home-title'> <h1>ROSTER</h1></div>
+  <hr>
   <InfoList :items="items" />
 
 </div>
@@ -34,6 +35,13 @@ export default {
 
 .home-title {
   margin-top: 50px;
+  font-family: 'Unica One', cursive;
+}
+
+hr {
+  width: 80%;
+  margin-top: 50px;
+
 }
 
 </style>
