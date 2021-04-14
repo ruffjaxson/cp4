@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Testimony from '../views/Testimony.vue'
 import Browse from '../views/Browse.vue'
+import Edit from '../views/Edit.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/browse',
     name: 'Browse',
     component: Browse
+  },
+  {
+    path: '/edit',
+    name: 'Edit',
+    component: Edit
   }
 ]
 

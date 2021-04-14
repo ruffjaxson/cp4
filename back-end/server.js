@@ -35,7 +35,7 @@ app.post('/api/arguments', async (req, res) => {
     await argument.save();
     res.send(argument);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -46,7 +46,7 @@ app.get('/api/arguments', async (req, res) => {
     let arguments = await Argument.find();
     res.send(arguments);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -72,7 +72,7 @@ app.post('/api/arguments/:argumentID/comments', async (req, res) => {
             res.send(404);
             return;
         }
-        // console.log(argument);
+        // //console.log(argument);
         let comment = new Comment({
             argument: argument,
             userName: req.body.userName,
@@ -82,7 +82,7 @@ app.post('/api/arguments/:argumentID/comments', async (req, res) => {
         await comment.save();
         res.send(comment);
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         res.sendStatus(500);
     }
 });
@@ -97,27 +97,27 @@ app.get('/api/arguments/:argumentID/comments', async (req, res) => {
         let comments = await Comment.find({argument:argument});
         res.send(comments);
     } catch (error) {
-        console.log(error);
+        ////console.log(error);
         res.sendStatus(500);
     }
 });
 
 app.put('/api/arguments/:argumentID/comments/:commentID', async (req, res) => {
-  //console.log("made it to the start of put");
+  ////console.log("made it to the start of put");
     try {
         let comment = await Comment.findOne({_id:req.params.commentID, argument: req.params.argumentID});
         if (!comment) {
             res.send(404);
             return;
         }
-        //console.log("made it past the try");
+        ////console.log("made it past the try");
         comment.userName = req.body.userName;
         comment.message = req.body.message;
         comment.date = req.body.date;
         await comment.save();
         res.send(comment);
     } catch (error) {
-        console.log(error);
+        ////console.log(error);
         res.sendStatus(500);
     }
 });
@@ -129,13 +129,15 @@ app.delete('/api/arguments/:argumentID/comments/:commentID', async (req, res) =>
             res.send(404);
             return;
         }
+        ////console.log("Before delete");
         await comment.delete();
+        ////console.log("After delete");
         res.sendStatus(200);
     } catch (error) {
-        console.log(error);
+      //  //console.log(error);
         res.sendStatus(500);
     }
 });
 
 
-app.listen(3000, () => console.log('Server listening on port 3000!'));
+app.listen(3000, () => //console.log('Server listening on port 3000!'));

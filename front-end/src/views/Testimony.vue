@@ -5,7 +5,7 @@
       <button class="conversation" v-for="conversation in conversations" :key="conversation._id" @click="selectconversation(conversation)">{{conversation.name}}</button>
     </div>
     <div class='topForm'>
-      <h2>ENTER YOUR COMMENT HERE</h2>
+      <h2>ENTER YOUR COMMENT</h2>
       <hr class='small-hr'>
       <form @submit.prevent="addComment">
         <input class='nameHolder' v-model="name" placeholder="NAME">
@@ -14,18 +14,16 @@
         <br />
         <button id="submit" class='conversation' type="submit">SUBMIT</button>
       </form>
+      <router-link id='edit-comment' class='conversation' to="/Edit">EDIT COMMENT</router-link>
     </div>
     <div class='displayComments'>
       <div v-for="comment in comments" v-bind:key="comment.id">
         <div class="comment">
           <div class="message">
             <p>{{comment.message}}</p>
-            <p><i>-- {{comment.userName}} on {{comment.today}}</i></p>
+            <p><i>-- {{comment.userName}}</i></p>
             <form @submit.prevent="deleteComment">
               <button class='edit-delete' @click="deleteComment(comment)">DELETE COMMENT</button>
-            </form>
-            <form @submit.prevent="editComment">
-              <button class='edit-delete' @click="editComment(comment)">EDIT COMMENT</button>
             </form>
           </div>
         </div>
@@ -51,21 +49,21 @@ export default {
     }
   },
   created() {
-    console.log("tryna call");
+    //console.log("tryna call");
     this.getconversations();
-    console.log("after tried call");
+    //console.log("after tried call");
   },
   methods: {
     async getconversations() {
-      console.log("entering conversations");
+      //console.log("entering conversations");
       try {
-        console.log("inside try");
+        //console.log("inside try");
         const response = await axios.get("/api/arguments");
         this.conversations = response.data;
-        console.log(this.conversations);
-        console.log("finishsed try");
+        //console.log(this.conversations);
+        //console.log("finishsed try");
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     selectconversation(conversation) {
@@ -74,7 +72,7 @@ export default {
     },
     async addComment() {
           try {
-            await axios.post(`/api/arguments/6075c741fca33b59f015328e/comments`, {
+            await axios.post(`/api/arguments/${this.conversation._id}/comments`, {
               userName: this.name,
               message: this.message,
               date: new Date().toLocaleString()
@@ -84,7 +82,7 @@ export default {
             this.today = "";
             this.getComments();
           } catch (error) {
-            console.log(error);
+            //console.log(error);
           }
         },
 
@@ -93,7 +91,7 @@ export default {
             const response = await axios.get(`/api/arguments/${this.conversation._id}/comments`);
             this.comments = response.data;
           } catch (error) {
-            console.log(error);
+            //console.log(error);
           }
         },
 
@@ -101,9 +99,11 @@ export default {
         async deleteComment(comment) {
           try {
             await axios.delete(`/api/arguments/${this.conversation._id}/comments/${comment._id}`);
+            //console.log("Before delete");
             this.getComments();
+            //console.log("After delete");
           } catch (error) {
-            console.log(error);
+            //console.log(error);
           }
         },
   }
@@ -167,10 +167,19 @@ export default {
   letter-spacing: 3px;
 }
 
+#edit-comment {
+  width: 200px;
+  height: 50px;
+  font-size: 0.8em;
+  padding: 8px;
+  text-decoration: none;
+}
+
 #submit {
   width: 100px;
   height: 50px;
   font-size: 0.8em;
+  text-decoration: none;
 }
 
 #conversations {

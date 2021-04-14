@@ -7,7 +7,7 @@
       <div class='menu-options'>
         <router-link to="/">HOME</router-link>
         <router-link to="/browse">BROWSE</router-link>
-        <router-link to="/Testimony">TESTIMONY</router-link>
+        <router-link to="/Testimony">FORUMS</router-link>
       </div>
     </div>
 
